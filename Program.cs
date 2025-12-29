@@ -9,7 +9,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
-        policy.WithOrigins("http://localhost:5173")
+        policy.WithOrigins("http://localhost:5173", "https://sjmcode.github.io")
               .AllowAnyMethod()
               .AllowAnyHeader());
 });
@@ -33,10 +33,18 @@ app.MapGet("/api/profile", () =>
         Title = "Software Engineer",
         Location = "Solna, Stockholm, Sweden",
         Email = "safir.jameel@gmail.com",
-        Phone = "+46 707 217 399",
+        Phone = "+46 707 217 ***",
         LinkedIn = "safir-jameel",
         GitHub = "SJMcode",
-        Summary = "Software Developer with 2 years of full-stack experience and 3 years in IT support..."
+        Summary = @"Software Developer with 2 years of full‑stack experience and 3 years in IT support. Skilled in building 
+scalable,
+        secure,
+        and maintainable applications that align with business requirements.Strong foundation in 
+backend and frontend development,
+        combined with hands‑on expertise in troubleshooting,
+        system support, 
+and delivering reliable technical solutions.Passionate about creating high‑quality software that enhances 
+user experience and supports long‑term growth."
     };
 
     return Results.Ok(profile);
@@ -51,6 +59,7 @@ app.MapGet("/api/experience", () =>
     {
         new Experience
         {
+
             Role = "Software Developer",
             Company = "Acugence Software Development Company",
             Location = "Doha, Qatar",
