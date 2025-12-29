@@ -16,6 +16,5 @@ WORKDIR /app
 COPY --from=publish /app/publish .
 
 # Set to listen on port 3000 to match Railway's setting
-ENV ASPNETCORE_URLS=http://+:3000
-
+ENV ASPNETCORE_URLS=http://0.0.0.0:3000
 ENTRYPOINT ["dotnet", "PortfolioApi.dll"]
