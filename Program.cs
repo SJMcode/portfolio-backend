@@ -4,6 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.WebHost.ConfigureKestrel(options => { options.ListenAnyIP(8080); });
 
 // CORS for React frontend
 builder.Services.AddCors(options =>
