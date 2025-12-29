@@ -29,21 +29,18 @@ app.UseCors("AllowFrontend");
 // ----------------------
 
 // ----------------------
-app.MapGet("/", () =>
+app.MapGet("/api/profile", () =>
 {
-    Console.WriteLine("=== Root endpoint hit ===");
-    return "API is running";
-});
-var profile = new Profile
-{
-    Name = "Safir Jameel M",
-    Title = "Software Engineer",
-    Location = "Solna, Stockholm, Sweden",
-    Email = "safir.jameel@gmail.com",
-    Phone = "+46 707 217 ***",
-    LinkedIn = "safir-jameel",
-    GitHub = "SJMcode",
-    Summary = @"Software Developer with 2 years of full‑stack experience and 3 years in IT support. Skilled in building 
+    var profile = new Profile
+    {
+        Name = "Safir Jameel M",
+        Title = "Software Engineer",
+        Location = "Solna, Stockholm, Sweden",
+        Email = "safir.jameel@gmail.com",
+        Phone = "+46 707 217 ***",
+        LinkedIn = "safir-jameel",
+        GitHub = "SJMcode",
+        Summary = @"Software Developer with 2 years of full‑stack experience and 3 years in IT support. Skilled in building 
 scalable,
         secure,
         and maintainable applications that align with business requirements.Strong foundation in 
@@ -52,9 +49,9 @@ backend and frontend development,
         system support, 
 and delivering reliable technical solutions.Passionate about creating high‑quality software that enhances 
 user experience and supports long‑term growth."
-};
+    };
 
-return Results.Ok(profile);
+    return Results.Ok(profile);
 });
 
 // ----------------------
