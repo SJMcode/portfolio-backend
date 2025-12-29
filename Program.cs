@@ -8,10 +8,7 @@ builder.Services.AddSwaggerGen();
 // Get port from environment variable (Railway sets this)
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 
-builder.WebHost.ConfigureKestrel(options =>
-{
-    options.ListenAnyIP(int.Parse(port)); // ← USE THE VARIABLE
-});
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // CORS for React frontend
 builder.Services.AddCors(options =>
@@ -24,10 +21,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsProduction())
-{
-    app.UseHttpsRedirection();
-}
+
 
 app.UseSwagger();
 app.UseSwaggerUI();
