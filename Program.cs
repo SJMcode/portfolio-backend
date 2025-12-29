@@ -4,7 +4,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.WebHost.ConfigureKestrel(options => { options.ListenAnyIP(8080); });
+
+// Get port from environment variable (Railway sets this)
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(int.Parse(port)); // ← USE THE VARIABLE
+});
 
 // CORS for React frontend
 builder.Services.AddCors(options =>
@@ -15,8 +22,8 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader());
 });
 
-
 var app = builder.Build();
+
 if (app.Environment.IsProduction())
 {
     app.UseHttpsRedirection();
@@ -24,9 +31,7 @@ if (app.Environment.IsProduction())
 
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseCors("AllowFrontend");
-
 // ----------------------
 app.MapGet("/", () => "API is running");
 // Profile Endpoint
