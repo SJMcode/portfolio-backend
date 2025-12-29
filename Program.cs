@@ -40,7 +40,7 @@ app.MapGet("/api/profile", () =>
 {
     var profile = new Profile
     {
-        Name = "Safir Jameel M",
+        Name = "Safir Jameel",
         Title = "Software Engineer",
         Location = "Solna, Stockholm, Sweden",
         Email = "safir.jameel@gmail.com",
