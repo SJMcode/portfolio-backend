@@ -9,13 +9,7 @@ builder.Logging.AddConsole();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Get port from environment variable
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-Console.WriteLine($"========================================");
-Console.WriteLine($"PORT DETECTED: {port}");
-Console.WriteLine($"========================================");
 
-builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
 // CORS for React frontend
 builder.Services.AddCors(options =>
