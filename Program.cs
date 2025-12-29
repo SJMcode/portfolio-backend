@@ -2,11 +2,18 @@ using PortfolioApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Force console logging to appear in Railway
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Get port from environment variable (Railway sets this)
+// Get port from environment variable
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+Console.WriteLine($"========================================");
+Console.WriteLine($"PORT DETECTED: {port}");
+Console.WriteLine($"========================================");
 
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
@@ -21,14 +28,20 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-Console.WriteLine("=== App built successfully ===");
+Console.WriteLine("========================================");
+Console.WriteLine("APP BUILT SUCCESSFULLY");
+Console.WriteLine("========================================");
 
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("AllowFrontend");
-// ----------------------
 
-// ----------------------
+app.MapGet("/", () =>
+{
+    Console.WriteLine("ROOT ENDPOINT HIT!");
+    return "API is running";
+});
+
 app.MapGet("/api/profile", () =>
 {
     var profile = new Profile
@@ -40,30 +53,17 @@ app.MapGet("/api/profile", () =>
         Phone = "+46 707 217 ***",
         LinkedIn = "safir-jameel",
         GitHub = "SJMcode",
-        Summary = @"Software Developer with 2 years of full‑stack experience and 3 years in IT support. Skilled in building 
-scalable,
-        secure,
-        and maintainable applications that align with business requirements.Strong foundation in 
-backend and frontend development,
-        combined with hands‑on expertise in troubleshooting,
-        system support, 
-and delivering reliable technical solutions.Passionate about creating high‑quality software that enhances 
-user experience and supports long‑term growth."
+        Summary = @"Software Developer with 2 years of full‑stack experience and 3 years in IT support. Skilled in building scalable, secure, and maintainable applications that align with business requirements. Strong foundation in backend and frontend development, combined with hands‑on expertise in troubleshooting, system support, and delivering reliable technical solutions. Passionate about creating high‑quality software that enhances user experience and supports long‑term growth."
     };
-
     return Results.Ok(profile);
 });
 
-// ----------------------
-// Experience Endpoint
-// ----------------------
 app.MapGet("/api/experience", () =>
 {
     var experiences = new List<Experience>
     {
         new Experience
         {
-
             Role = "Software Developer",
             Company = "Acugence Software Development Company",
             Location = "Doha, Qatar",
@@ -92,13 +92,9 @@ app.MapGet("/api/experience", () =>
             }
         }
     };
-
     return Results.Ok(experiences);
 });
 
-// ----------------------
-// Skills Endpoint
-// ----------------------
 app.MapGet("/api/skills", () =>
 {
     var skills = new List<Skill>
@@ -111,13 +107,9 @@ app.MapGet("/api/skills", () =>
         new Skill { Name = "AWS EC2" },
         new Skill { Name = "Networking (TCP/IP, VLAN, VPN)" }
     };
-
     return Results.Ok(skills);
 });
 
-// ----------------------
-// Projects Endpoint
-// ----------------------
 app.MapGet("/api/projects", () =>
 {
     var projects = new List<Project>
@@ -130,8 +122,11 @@ app.MapGet("/api/projects", () =>
             GitHubUrl = "https://github.com/SJMcode"
         }
     };
-
     return Results.Ok(projects);
 });
-Console.WriteLine($"=== Starting app on port {port} ===");
+
+Console.WriteLine("========================================");
+Console.WriteLine($"STARTING APP ON PORT {port}");
+Console.WriteLine("========================================");
+
 app.Run();
