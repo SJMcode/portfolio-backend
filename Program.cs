@@ -24,6 +24,7 @@ app.UseSwaggerUI();
 app.UseCors("AllowFrontend");
 
 // ----------------------
+app.MapGet("/", () => "API is running");
 // Profile Endpoint
 // ----------------------
 app.MapGet("/api/profile", () =>
