@@ -12,4 +12,6 @@ WORKDIR /app
 COPY --from=build /app/out .
 # Verify the DLL exists
 RUN ls -la PortfolioApi.dll
+EXPOSE 3000
+ENV ASPNETCORE_URLS=http://+:3000
 ENTRYPOINT ["dotnet", "PortfolioApi.dll"]
