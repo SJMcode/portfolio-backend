@@ -10,4 +10,9 @@ RUN dotnet publish "PortfolioApi.csproj" -c Release -o /app/out
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/out .
+# Verify the DLL exists
+RUN ls -la && \
+    if [ ! -f "PortfolioApi.dll" ]; then \
+    echo "ERROR: PortfolioApi.dll not found!" && exit 1; \
+    fi
 ENTRYPOINT ["dotnet", "PortfolioApi.dll"]
