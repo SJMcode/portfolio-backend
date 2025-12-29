@@ -120,7 +120,7 @@ app.MapGet("/api/projects", () =>
 });
 
 Console.WriteLine("========================================");
-Console.WriteLine($"STARTING APP ON PORT {port}");
+//Console.WriteLine($"STARTING APP ON PORT {port}");
 Console.WriteLine("========================================");
 
 app.Run();
