@@ -11,8 +11,5 @@ FROM base AS final
 WORKDIR /app
 COPY --from=build /app/out .
 # Verify the DLL exists
-RUN ls -la && \
-    if [ ! -f "PortfolioApi.dll" ]; then \
-    echo "ERROR: PortfolioApi.dll not found!" && exit 1; \
-    fi
+RUN ls -la PortfolioApi.dll
 ENTRYPOINT ["dotnet", "PortfolioApi.dll"]
