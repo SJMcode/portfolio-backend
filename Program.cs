@@ -17,6 +17,10 @@ builder.Services.AddCors(options =>
 
 
 var app = builder.Build();
+if (app.Environment.IsProduction())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseSwagger();
 app.UseSwaggerUI();
