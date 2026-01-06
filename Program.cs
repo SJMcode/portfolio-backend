@@ -60,7 +60,7 @@ app.MapGet("/api/experience", () =>
         {
             Role = "Software Engineer",
             Company = "Brotoype",
-            Location = "Cochin,India, (remote),
+            Location = "Cochin, India (remote)",
             Period = "Jan 2026 – Present",
             Responsibilities = new()
             {
