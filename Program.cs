@@ -99,7 +99,10 @@ app.MapGet("/api/skills", () =>
         new Skill { Name = "Kubernetes" },
         new Skill { Name = "Python" },
         new Skill { Name = "AWS EC2" },
-        new Skill { Name = "Networking (TCP/IP, VLAN, VPN)" }
+        new Skill { Name = "Networking (TCP/IP, VLAN, VPN)" },
+        new Skill {Name = "React Typescript Tailwind"},
+        new Skill {Name = "Node.js  "},
+        new Skill {Name = "Languages: English - Professional, Swedish (B2), German (A2)"},
     };
     return Results.Ok(skills);
 });
