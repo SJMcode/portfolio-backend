@@ -58,6 +58,19 @@ app.MapGet("/api/experience", () =>
     {
         new Experience
         {
+            Role = "Software Engineer",
+            Company = "Brotoype",
+            Location = "Cochin,India, (remote),
+            Period = "Jan 2026 – Present",
+            Responsibilities = new()
+            {
+                "Developed and maintained full-stack web solutions using .NET and React, improving load times/scalability.",
+                "Architected responsive UI components using TypeScript and Tailwind CSS, ensuring a consistent user experience across platforms.",
+                "Collaborated in a remote-first team to deliver high-quality code following [Agile/Scrum] methodologies."
+            }
+        },
+        new Experience
+        {
             Role = "Software Developer",
             Company = "Acugence Software Development Company",
             Location = "Doha, Qatar",
